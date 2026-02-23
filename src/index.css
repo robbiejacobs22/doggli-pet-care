@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-heading: 'Sora', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+
+  /* Dark Foundation */
+  --color-midnight: oklch(13% 0.02 270);
+  --color-midnight-light: oklch(18% 0.02 270);
+  --color-midnight-lighter: oklch(23% 0.015 270);
+
+  /* Warm Accent: Amber */
+  --color-amber: oklch(78% 0.18 75);
+  --color-amber-light: oklch(88% 0.12 75);
+  --color-amber-dark: oklch(65% 0.18 75);
+
+  /* Energetic Accent: Coral */
+  --color-coral: oklch(70% 0.19 25);
+  --color-coral-light: oklch(80% 0.14 25);
+  --color-coral-dark: oklch(58% 0.19 25);
+
+  /* Cool Accent: Violet */
+  --color-violet: oklch(60% 0.22 290);
+  --color-violet-light: oklch(72% 0.16 290);
+  --color-violet-dark: oklch(45% 0.22 290);
+
+  /* Playful Accent: Sky */
+  --color-sky: oklch(72% 0.15 230);
+
+  /* Text Colors */
+  --color-text-primary: oklch(95% 0.005 270);
+  --color-text-secondary: oklch(75% 0.01 270);
+  --color-text-muted: oklch(55% 0.01 270);
+
+  /* Glass */
+  --color-glass: oklch(95% 0.005 270 / 0.05);
+  --color-glass-border: oklch(95% 0.005 270 / 0.1);
+  --color-glass-hover: oklch(95% 0.005 270 / 0.08);
+
+  /* Animations */
+  --animate-blob: blob 8s ease-in-out infinite;
+  --animate-blob-slow: blob 12s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+}
+
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33%      { transform: translate(30px, -50px) scale(1.1) rotate(120deg); }
+  66%      { transform: translate(-20px, 20px) scale(0.9) rotate(240deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-20px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Base styles */
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-midnight);
+  color: var(--color-text-primary);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-midnight);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-midnight-lighter);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
