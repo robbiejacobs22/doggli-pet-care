@@ -200,14 +200,14 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-heading font-bold text-text-primary mb-1">Find Us</h4>
-                    <p className="text-text-secondary">El Sobrante, CA</p>
+                    <p className="text-text-secondary">{businessInfo.address}</p>
                     <p className="text-text-muted text-sm mt-1">Serving the greater East Bay area</p>
                   </div>
                 </div>
                 <div className="relative h-48 w-full">
                   <iframe
                     title="Doggli Pet Care Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25074.2!2d-122.3!3d37.97!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80857e5f5c0b3d2b%3A0x3a3b9e6c7f8a9e8d!2sEl%20Sobrante%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3148.5!2d-122.3178!3d37.9595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80857e2a2a2a2a2a%3A0x1234567890abcdef!2s4317%20Santa%20Rita%20Rd%2C%20El%20Sobrante%2C%20CA%2094803!5e0!3m2!1sen!2sus!4v1700000000000"
                     className="absolute inset-0 w-full h-full border-0 opacity-80 contrast-125 grayscale-[30%]"
                     allowFullScreen=""
                     loading="lazy"

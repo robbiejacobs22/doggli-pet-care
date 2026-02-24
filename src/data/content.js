@@ -5,6 +5,7 @@ export const businessInfo = {
   phone: '(510) 393-2881',
   email: 'dogili@gmail.com',
   hours: 'Flexible Hours: Early drop-off & late pick-up',
+  address: '4317 Santa Rita Rd, El Sobrante, CA 94803',
 }
 
 export const navLinks = [
@@ -114,9 +115,9 @@ export const galleryImages = [
 
 export const pricingTiers = [
   {
-    id: 'daypass',
-    name: 'Day Pass',
-    price: 35,
+    id: 'daycare',
+    name: 'Day Care',
+    price: 70,
     period: 'day',
     description: 'Perfect for busy workdays',
     features: [
@@ -129,9 +130,9 @@ export const pricingTiers = [
     popular: false,
   },
   {
-    id: 'weekend',
-    name: 'Weekend Stay',
-    price: 55,
+    id: 'overnight',
+    name: 'Overnight',
+    price: 100,
     period: 'night',
     description: 'Ideal for short getaways',
     features: [
@@ -145,18 +146,19 @@ export const pricingTiers = [
     popular: true,
   },
   {
-    id: 'vip',
-    name: 'VIP Package',
-    price: 85,
-    period: 'night',
-    description: 'The ultimate pampering experience',
+    id: 'weekly',
+    name: '7-Day Special',
+    price: 600,
+    period: 'week',
+    description: 'Best value for extended stays',
     features: [
-      'Everything in Weekend Stay',
-      'One-on-one playtime',
-      'Scenic premium walks',
-      'Spa bath included',
-      'Video updates',
-      'Priority booking',
+      'Full week of boarding',
+      'Daily walks & playtime',
+      'Outdoor play sessions',
+      'Cozy sleeping area',
+      'Photo & video updates',
+      'Feeding & treats',
+      'Save $100 vs. nightly rate',
     ],
     popular: false,
   },

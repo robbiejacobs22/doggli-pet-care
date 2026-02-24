@@ -90,6 +90,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>⏰ {businessInfo.hours}</li>
+              <li>📍 {businessInfo.address}</li>
             </ul>
           </div>
         </div>
