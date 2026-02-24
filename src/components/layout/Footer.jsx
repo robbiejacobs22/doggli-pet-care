@@ -14,10 +14,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8">
           {/* Brand */}
           <div>
-            <a href="#hero" className="flex items-center gap-2 mb-4">
-              <span className="text-2xl">🐾</span>
-              <span className="font-heading font-bold text-xl bg-gradient-to-r from-amber to-coral bg-clip-text text-transparent">
-                Doggli
+            <a href="#hero" className="flex items-center gap-2.5 mb-4">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber to-amber-dark flex items-center justify-center shadow-lg shadow-amber/20">
+                <span className="text-lg leading-none">🐾</span>
+              </div>
+              <span className="font-nav font-bold text-xl tracking-tight">
+                <span className="bg-gradient-to-r from-amber to-coral bg-clip-text text-transparent">Doggli</span>
               </span>
             </a>
             <p className="text-text-muted text-sm leading-relaxed mb-6">

@@ -15,13 +15,55 @@ const floatingEmojis = [
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.2 },
+    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
   },
 }
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+const badgeVariants = {
+  hidden: { opacity: 0, scale: 0.6, y: 20 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 0.6, type: 'spring', stiffness: 150, damping: 12 },
+  },
+}
+
+const headlineVariants = {
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+  },
+}
+
+const subtitleVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
+}
+
+const buttonVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.6, type: 'spring', stiffness: 120, damping: 14 },
+  },
+}
+
+const scrollVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 1.2, delay: 0.2 },
+  },
 }
 
 export default function Hero() {
@@ -63,14 +105,14 @@ export default function Hero() {
         animate="visible"
         className="relative z-10 text-center px-4 max-w-5xl mx-auto"
       >
-        <motion.div variants={itemVariants} className="mb-6">
+        <motion.div variants={badgeVariants} className="mb-6">
           <span className="inline-block px-4 py-2 rounded-full bg-amber/10 border border-amber/20 text-amber text-sm font-semibold font-heading mb-6">
             🐾 Premium Pet Care Services
           </span>
         </motion.div>
 
         <motion.h1
-          variants={itemVariants}
+          variants={headlineVariants}
           className="font-heading font-extrabold text-5xl md:text-6xl lg:text-8xl leading-tight mb-6"
         >
           Give Your Furry Friend the{' '}
@@ -81,14 +123,14 @@ export default function Hero() {
         </motion.h1>
 
         <motion.p
-          variants={itemVariants}
+          variants={subtitleVariants}
           className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10"
         >
           {businessInfo.bio} We offer dog walks, daycare, boarding, and drop-in visits for your furry friends.
         </motion.p>
 
         <motion.div
-          variants={itemVariants}
+          variants={buttonVariants}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <PillButton href="#contact" size="lg">
@@ -101,7 +143,7 @@ export default function Hero() {
 
         {/* Scroll indicator */}
         <motion.div
-          variants={itemVariants}
+          variants={scrollVariants}
           className="mt-16"
         >
           <motion.div

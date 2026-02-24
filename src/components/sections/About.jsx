@@ -2,6 +2,7 @@ import { motion } from 'motion/react'
 import { aboutStats, whyChooseUs } from '../../data/content'
 import SectionHeading from '../ui/SectionHeading'
 import AnimatedSection from '../ui/AnimatedSection'
+import AnimatedCounter from '../ui/AnimatedCounter'
 import GlassCard from '../ui/GlassCard'
 import GradientBlob from '../ui/GradientBlob'
 
@@ -58,7 +59,7 @@ export default function About() {
               {aboutStats.map((stat, i) => (
                 <div key={i} className="text-center">
                   <div className="font-heading font-extrabold text-3xl md:text-4xl bg-gradient-to-r from-amber to-coral bg-clip-text text-transparent">
-                    {stat.value}
+                    <AnimatedCounter value={stat.value} duration={2 + i * 0.3} />
                   </div>
                   <div className="text-text-muted text-sm font-medium mt-1">{stat.label}</div>
                 </div>

@@ -4,39 +4,40 @@
   /* Typography */
   --font-heading: 'Sora', ui-sans-serif, system-ui, sans-serif;
   --font-body: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+  --font-nav: 'Fredoka', ui-sans-serif, system-ui, sans-serif;
 
-  /* Dark Foundation */
-  --color-midnight: oklch(13% 0.02 270);
-  --color-midnight-light: oklch(18% 0.02 270);
-  --color-midnight-lighter: oklch(23% 0.015 270);
+  /* Dark Foundation — Deep Teal (from Doggli brand green) */
+  --color-midnight: oklch(18% 0.04 170);
+  --color-midnight-light: oklch(23% 0.04 170);
+  --color-midnight-lighter: oklch(28% 0.035 170);
 
-  /* Warm Accent: Amber */
-  --color-amber: oklch(78% 0.18 75);
-  --color-amber-light: oklch(88% 0.12 75);
-  --color-amber-dark: oklch(65% 0.18 75);
+  /* Primary Accent: Gold (from Doggli brand yellow paw prints) */
+  --color-amber: oklch(82% 0.16 85);
+  --color-amber-light: oklch(90% 0.10 85);
+  --color-amber-dark: oklch(70% 0.16 85);
 
-  /* Energetic Accent: Coral */
-  --color-coral: oklch(70% 0.19 25);
-  --color-coral-light: oklch(80% 0.14 25);
-  --color-coral-dark: oklch(58% 0.19 25);
+  /* Secondary Accent: Cream/Warm Rose (from Doggli brand text) */
+  --color-coral: oklch(82% 0.06 50);
+  --color-coral-light: oklch(90% 0.04 50);
+  --color-coral-dark: oklch(70% 0.08 50);
 
-  /* Cool Accent: Violet */
-  --color-violet: oklch(60% 0.22 290);
-  --color-violet-light: oklch(72% 0.16 290);
-  --color-violet-dark: oklch(45% 0.22 290);
+  /* Cool Accent: Teal (from Doggli brand green, lighter variant) */
+  --color-violet: oklch(55% 0.12 170);
+  --color-violet-light: oklch(65% 0.10 170);
+  --color-violet-dark: oklch(40% 0.12 170);
 
-  /* Playful Accent: Sky */
-  --color-sky: oklch(72% 0.15 230);
+  /* Playful Accent: Emerald */
+  --color-sky: oklch(68% 0.14 160);
 
-  /* Text Colors */
-  --color-text-primary: oklch(95% 0.005 270);
-  --color-text-secondary: oklch(75% 0.01 270);
-  --color-text-muted: oklch(55% 0.01 270);
+  /* Text Colors — Cream-tinted whites to match brand */
+  --color-text-primary: oklch(95% 0.01 80);
+  --color-text-secondary: oklch(75% 0.015 170);
+  --color-text-muted: oklch(55% 0.02 170);
 
-  /* Glass */
-  --color-glass: oklch(95% 0.005 270 / 0.05);
-  --color-glass-border: oklch(95% 0.005 270 / 0.1);
-  --color-glass-hover: oklch(95% 0.005 270 / 0.08);
+  /* Glass — Teal-tinted glass */
+  --color-glass: oklch(95% 0.01 170 / 0.05);
+  --color-glass-border: oklch(95% 0.01 170 / 0.1);
+  --color-glass-hover: oklch(95% 0.01 170 / 0.08);
 
   /* Animations */
   --animate-blob: blob 8s ease-in-out infinite;
