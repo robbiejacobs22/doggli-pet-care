@@ -124,9 +124,7 @@ export default async function LocalServicePage({
 
             <h1 className="mt-5 text-balance text-4xl font-semibold leading-[1.05] text-forest-ink sm:text-5xl lg:text-6xl">
               {service.noun} in{" "}
-              <em className="not-italic text-clay" style={{ fontVariationSettings: '"SOFT" 90, "WONK" 1' }}>
-                {city.name}
-              </em>
+              <em className="not-italic text-clay">{city.name}</em>
             </h1>
 
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-stone">

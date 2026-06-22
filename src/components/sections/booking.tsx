@@ -16,12 +16,7 @@ export function Booking() {
           <span className="eyebrow">Book a stay</span>
           <h2 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">
             Let&apos;s plan your dog&apos;s{" "}
-            <em
-              className="not-italic text-clay"
-              style={{ fontVariationSettings: '"SOFT" 80, "WONK" 1' }}
-            >
-              best day
-            </em>
+            <em className="not-italic text-clay">best day</em>
           </h2>
           <p className="mt-5 max-w-md text-lg leading-relaxed text-stone">
             Tell us a little about your pup and we&apos;ll get right back to you —

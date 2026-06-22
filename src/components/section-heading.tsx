@@ -25,13 +25,7 @@ export function SectionHeading({
     return (
       <>
         {before}
-        <em
-          className={cn(
-            "not-italic",
-            onForest ? "text-honey" : "text-clay",
-          )}
-          style={{ fontVariationSettings: '"SOFT" 80, "WONK" 1' }}
-        >
+        <em className={cn("not-italic", onForest ? "text-honey" : "text-clay")}>
           {emphasis}
         </em>
         {after}

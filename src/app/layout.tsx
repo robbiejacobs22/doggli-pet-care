@@ -10,7 +10,9 @@ const fraunces = Fraunces({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-fraunces",
-  axes: ["opsz", "SOFT", "WONK"],
+  // One variable file (wght axis only). Requesting opsz/SOFT/WONK/italic split
+  // Fraunces into several files that loaded progressively and made the big
+  // headline visibly re-render ("blink") on load. Emphasis is color-only.
 });
 
 const inter = Inter({

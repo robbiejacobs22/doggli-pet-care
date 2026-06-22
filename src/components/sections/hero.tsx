@@ -26,20 +26,11 @@ export function Hero() {
   });
   const parallax = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 70]);
 
-  const container = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
-  };
-  // Smooth, GPU-composited fade + rise — no blur filter (the blur caused the
-  // flickery "jumpy" repaint on load/refresh).
-  const item = {
-    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 16 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.55, ease },
-    },
-  };
+  // One cohesive fade for the whole hero copy — no per-child stagger (which
+  // desynced the text from the photo) and no blur filter (which flickered).
+  const fadeUp = reduce
+    ? { initial: { opacity: 0 }, animate: { opacity: 1 } }
+    : { initial: { opacity: 0, y: 14 }, animate: { opacity: 1, y: 0 } };
 
   return (
     <section
@@ -54,40 +45,33 @@ export function Hero() {
 
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 pb-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pb-24">
         {/* Copy */}
-        <motion.div variants={container} initial="hidden" animate="visible">
-          <motion.div variants={item}>
+        <motion.div
+          initial={fadeUp.initial}
+          animate={fadeUp.animate}
+          transition={{ duration: 0.6, ease }}
+        >
+          <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-3 py-1.5 text-sm font-medium text-stone shadow-soft">
               <Stars rating={site.rating.value} size={15} />
               <span className="text-forest-ink">{site.rating.value.toFixed(1)}</span>
               <span aria-hidden className="text-line-strong">·</span>
               <span>Loved by {stats[0].value}+ local dogs</span>
             </span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            variants={item}
-            className="mt-6 text-balance text-5xl font-semibold leading-[1.02] text-forest-ink sm:text-6xl lg:text-7xl"
-          >
+          <h1 className="mt-6 text-balance text-5xl font-semibold leading-[1.02] text-forest-ink sm:text-6xl lg:text-7xl">
             Give your dog the{" "}
-            <em
-              className="not-italic text-clay"
-              style={{ fontVariationSettings: '"SOFT" 90, "WONK" 1' }}
-            >
-              best day
-            </em>
+            <em className="not-italic text-clay">best day</em>
             , every day.
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={item}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-stone"
-          >
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-stone">
             Boutique boarding, daycare, walking, and drop-in visits in El Sobrante.
             Warm, supervised, genuinely loving care — with daily photo updates so
             you can relax while you&apos;re away.
-          </motion.p>
+          </p>
 
-          <motion.div variants={item} className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="honey" size="lg">
               <Link href="/#book">
                 Book a Stay
@@ -100,13 +84,10 @@ export function Hero() {
                 {site.phone}
               </a>
             </Button>
-          </motion.div>
+          </div>
 
           {/* trust stats */}
-          <motion.dl
-            variants={item}
-            className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-line pt-8"
-          >
+          <dl className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-line pt-8">
             {stats.map((s) => (
               <div key={s.label}>
                 <dt className="sr-only">{s.label}</dt>
@@ -121,15 +102,15 @@ export function Hero() {
                 </dd>
               </div>
             ))}
-          </motion.dl>
+          </dl>
         </motion.div>
 
         {/* Photo */}
         <motion.div
           ref={imageWrap}
-          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 20 }}
+          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.97, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.9, ease, delay: 0.15 }}
+          transition={{ duration: 0.7, ease, delay: 0.05 }}
           className="relative"
         >
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-line bg-sand shadow-lift sm:aspect-[5/5] lg:aspect-[4/5]">

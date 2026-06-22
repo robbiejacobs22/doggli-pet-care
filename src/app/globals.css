@@ -109,12 +109,9 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Headlines use Fraunces with its optical-size + soft + slightly wonky axes
-     for the warm, premium feel called for in the brief. */
+  /* Headlines use Fraunces for the warm, premium feel called for in the brief. */
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-optical-sizing: auto;
-    font-variation-settings: "SOFT" 60, "WONK" 0;
     letter-spacing: -0.018em;
     color: var(--color-forest-ink);
     text-wrap: balance;

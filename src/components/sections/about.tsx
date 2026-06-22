@@ -40,12 +40,7 @@ export function About() {
           <span className="eyebrow">Who we are</span>
           <h2 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">
             We treat your dog like{" "}
-            <em
-              className="not-italic text-clay"
-              style={{ fontVariationSettings: '"SOFT" 80, "WONK" 1' }}
-            >
-              our own
-            </em>
+            <em className="not-italic text-clay">our own</em>
           </h2>
 
           <div className="mt-6 space-y-4 text-lg leading-relaxed text-stone">
