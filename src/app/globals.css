@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   Doggli — "Warm & Premium" design tokens
+   Boutique pet hotel meets Airbnb-grade polish. Cream-based, light, warm.
+   Colors are authored in OKLCH for perceptual consistency.
+   ========================================================================== */
+@theme {
+  /* ---- Type families (wired to next/font in layout.tsx) ---- */
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Surfaces ---- */
+  --color-cream: oklch(98.5% 0.012 85);
+  --color-sand: oklch(95.5% 0.02 80);
+  --color-sand-deep: oklch(92.5% 0.026 78);
+  --color-card: oklch(99.5% 0.006 85);
+
+  /* ---- Brand: deep forest green ---- */
+  --color-forest: oklch(40% 0.058 158);
+  --color-forest-bright: oklch(48% 0.075 156);
+  --color-forest-deep: oklch(26% 0.04 160);
+  --color-forest-ink: oklch(20% 0.03 162);
+
+  /* ---- Accent: warm honey / amber ---- */
+  --color-honey: oklch(80% 0.135 78);
+  --color-honey-deep: oklch(70% 0.14 70);
+  --color-honey-soft: oklch(92% 0.06 82);
+
+  /* ---- Secondary accent: soft clay / terracotta ---- */
+  --color-clay: oklch(67% 0.115 45);
+  --color-clay-soft: oklch(90% 0.05 50);
+
+  /* ---- Text ---- */
+  --color-ink: oklch(27% 0.022 60);
+  --color-stone: oklch(48% 0.018 62);
+  --color-stone-light: oklch(62% 0.015 65);
+
+  /* ---- Lines / borders ---- */
+  --color-line: oklch(89% 0.014 80);
+  --color-line-strong: oklch(83% 0.02 78);
+
+  /* ---- On-forest text (for dark sections) ---- */
+  --color-on-forest: oklch(95% 0.015 90);
+  --color-on-forest-muted: oklch(82% 0.02 120);
+
+  /* ---- Radii ---- */
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
+  --radius-3xl: 2.25rem;
+
+  /* ---- Shadows (warm-tinted, soft) ---- */
+  --shadow-soft: 0 1px 2px oklch(40% 0.04 70 / 0.04), 0 8px 24px oklch(40% 0.04 70 / 0.06);
+  --shadow-lift: 0 2px 6px oklch(40% 0.04 70 / 0.06), 0 18px 48px oklch(40% 0.05 70 / 0.12);
+  --shadow-honey: 0 12px 34px oklch(70% 0.14 70 / 0.28);
+
+  /* ---- Motion ---- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-kenburns: kenburns 22s ease-out both;
+  --animate-float-soft: float-soft 7s ease-in-out infinite;
+  --animate-marquee: marquee 38s linear infinite;
+}
+
+@keyframes kenburns {
+  0% { transform: scale(1.08) translate3d(0, 0, 0); }
+  100% { transform: scale(1.16) translate3d(-1.5%, -1.5%, 0); }
+}
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes acc-down {
+  from { height: 0; opacity: 0; }
+  to { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+@keyframes acc-up {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to { height: 0; opacity: 0; }
+}
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes dialog-in {
+  from { opacity: 0; transform: translate(-50%, -48%) scale(0.97); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ============================================================================
+   Base
+   ========================================================================== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem; /* offset for the sticky navbar */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headlines use Fraunces with its optical-size + soft + slightly wonky axes
+     for the warm, premium feel called for in the brief. */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 60, "WONK" 0;
+    letter-spacing: -0.018em;
+    color: var(--color-forest-ink);
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  ::selection {
+    background: var(--color-honey);
+    color: var(--color-forest-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Subtle, warm scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-sand); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line-strong);
+    border-radius: 999px;
+    border: 2px solid var(--color-sand);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-stone-light); }
+}
+
+/* ============================================================================
+   Component-level utilities
+   ========================================================================== */
+@layer components {
+  .eyebrow {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-clay);
+  }
+
+  /* Warm paper grain — extremely subtle, adds richness without noise */
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    background-image: radial-gradient(
+      oklch(40% 0.04 70 / 0.05) 0.5px,
+      transparent 0.5px
+    );
+    background-size: 4px 4px;
+  }
+}
+
+/* ============================================================================
+   Reduced motion — calm static fallback (brief §2, §9)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
