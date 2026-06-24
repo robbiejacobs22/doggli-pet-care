@@ -10,12 +10,12 @@ import { Faq } from "@/components/sections/faq";
 import { ServiceArea } from "@/components/sections/service-area";
 import { Booking } from "@/components/sections/booking";
 import { JsonLd } from "@/components/json-ld";
-import { localBusinessSchema, faqSchema } from "@/lib/schema";
+import { localBusinessSchema, websiteSchema, faqSchema } from "@/lib/schema";
 
 export default function Home() {
   return (
     <>
-      <JsonLd data={[localBusinessSchema(), faqSchema()]} />
+      <JsonLd data={[localBusinessSchema(), websiteSchema(), faqSchema()]} />
       <main id="main">
         <Hero />
         <Services />

@@ -46,9 +46,11 @@ export function About() {
           <div className="mt-6 space-y-4 text-lg leading-relaxed text-stone">
             <p>
               Doggli began with a simple belief: every dog deserves a day filled
-              with fun and plenty of tail wags. We&apos;re a small, hands-on pet
-              care home in El Sobrante — not a crowded kennel — so your pup gets
-              real attention, scenic walks, and a comfy place to rest.
+              with fun and plenty of tail wags. It&apos;s owned and run by{" "}
+              <strong className="font-semibold text-forest-ink">Gila</strong> — a
+              hands-on caretaker, not a crowded kennel — so your pup gets real
+              attention, scenic walks, and a comfy place to rest in our El Sobrante
+              home.
             </p>
             <p>
               Whether it&apos;s a single afternoon of play or a long vacation

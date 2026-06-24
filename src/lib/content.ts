@@ -347,6 +347,21 @@ export type Faq = { question: string; answer: string };
 
 export const faqs: Faq[] = [
   {
+    question: "How much does dog boarding and daycare cost?",
+    answer:
+      "Daycare is $70 per day, overnight boarding is $100 per night, and our 7-Day Special is $600 per week (a $100 saving versus the nightly rate). Every stay includes outdoor play, feeding, and daily photo updates.",
+  },
+  {
+    question: "Where is Doggli Pet Care located?",
+    answer:
+      "We're at 4317 Santa Rita Rd, El Sobrante, CA 94803 — a home-based dog care in the East Bay, an easy drive from Richmond, El Cerrito, Pinole, Hercules, Berkeley, and Oakland.",
+  },
+  {
+    question: "Who runs Doggli Pet Care?",
+    answer:
+      "Doggli is owned and run by Gila, a hands-on caretaker with 5+ years of experience and a 5.0★ rating across 28 Google reviews. Your dog is cared for personally — not handed off to a rotating staff.",
+  },
+  {
     question: "What vaccinations does my dog need?",
     answer:
       "Dogs should be up to date on core vaccines — Rabies, DHPP (distemper/parvo), and Bordetella (kennel cough). Please bring a copy of records to the meet & greet. (Owner to confirm exact requirements.)",

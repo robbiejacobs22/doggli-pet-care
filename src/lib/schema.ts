@@ -1,26 +1,44 @@
-import { site, sameAs } from "@/lib/site";
-import { faqs, serviceCities, testimonials } from "@/lib/content";
+import { site, sameAs, directionsHref } from "@/lib/site";
+import { faqs, serviceCities, testimonials, pricingTiers } from "@/lib/content";
 
-const ID = `${site.url}/#business`;
+const BUSINESS_ID = `${site.url}/#business`;
+const WEBSITE_ID = `${site.url}/#website`;
 
 /**
- * LocalBusiness (AnimalCareBusiness) — the anchor entity for local SEO.
- * Includes geo, hours, price range, rating, reviews, and areaServed.
+ * LocalBusiness (AnimalCareBusiness) — the anchor entity for local + AI search.
+ * Enriched with offers/pricing, images, service knowledge, and reviews so search
+ * engines and answer engines (ChatGPT/Perplexity/Gemini) can ground answers.
  */
 export function localBusinessSchema() {
   return {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "AnimalCareBusiness"],
-    "@id": ID,
+    "@id": BUSINESS_ID,
     name: site.name,
+    legalName: site.name,
     description: site.description,
+    slogan: site.tagline,
     url: site.url,
     telephone: site.phoneRaw,
     email: site.email,
-    image: `${site.url}/opengraph-image`,
+    image: [
+      `${site.url}/opengraph-image`,
+      `${site.url}/dogs/dog-1.png`,
+      `${site.url}/dogs/about.png`,
+      `${site.url}/reviews/g-9.jpg`,
+    ],
     logo: `${site.url}/logo.png`,
     priceRange: site.priceRange,
     currenciesAccepted: "USD",
+    hasMap: directionsHref,
+    knowsAbout: [
+      "Dog boarding",
+      "Dog daycare",
+      "Dog walking",
+      "Drop-in pet visits",
+      "Pet sitting",
+      "Overnight dog boarding",
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: site.address.street,
@@ -52,9 +70,24 @@ export function localBusinessSchema() {
       },
     ],
     sameAs,
-    areaServed: serviceCities.map((c) => ({
-      "@type": "City",
-      name: c.name,
+    areaServed: serviceCities.map((c) => ({ "@type": "City", name: c.name })),
+    makesOffer: pricingTiers.map((tier) => ({
+      "@type": "Offer",
+      name: `${tier.name} dog care`,
+      price: tier.price,
+      priceCurrency: "USD",
+      url: `${site.url}/#pricing`,
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: tier.price,
+        priceCurrency: "USD",
+        unitText: tier.period,
+      },
+      itemOffered: {
+        "@type": "Service",
+        name: tier.name,
+        provider: { "@id": BUSINESS_ID },
+      },
     })),
     aggregateRating: {
       "@type": "AggregateRating",
@@ -72,7 +105,22 @@ export function localBusinessSchema() {
       },
       author: { "@type": "Person", name: t.name },
       reviewBody: t.text,
+      publisher: { "@type": "Organization", name: "Google" },
     })),
+  };
+}
+
+/** WebSite entity, linked to the business as publisher. */
+export function websiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": WEBSITE_ID,
+    url: site.url,
+    name: site.name,
+    description: site.description,
+    inLanguage: "en-US",
+    publisher: { "@id": BUSINESS_ID },
   };
 }
 
@@ -117,7 +165,7 @@ export function localServiceSchema({
     serviceType: serviceName,
     name: `${serviceName} in ${cityName}`,
     url,
-    provider: { "@id": ID },
+    provider: { "@id": BUSINESS_ID },
     areaServed: { "@type": "City", name: cityName },
     aggregateRating: {
       "@type": "AggregateRating",
