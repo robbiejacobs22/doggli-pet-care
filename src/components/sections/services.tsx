@@ -93,16 +93,6 @@ export function Services() {
           </RevealItem>
         ))}
       </RevealGroup>
-
-      <Reveal className="mt-8 rounded-3xl border border-dashed border-line-strong bg-sand/60 p-6 text-center text-stone sm:text-left">
-        <p className="text-sm">
-          Not sure which fits?{" "}
-          <Link href="/#book" className="font-semibold text-forest underline-offset-4 hover:underline">
-            Tell us about your pup
-          </Link>{" "}
-          and we&apos;ll recommend the right care.
-        </p>
-      </Reveal>
     </Section>
   );
 }

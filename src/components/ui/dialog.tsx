@@ -31,20 +31,24 @@ const DialogContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <DialogPortal>
     <DialogOverlay />
-    <DialogPrimitive.Content
-      ref={ref}
-      className={cn(
-        "fixed left-1/2 top-1/2 z-50 grid w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-3xl border border-line bg-card p-6 shadow-lift data-[state=open]:animate-[dialog-in_0.24s_cubic-bezier(0.22,1,0.36,1)] sm:p-8 max-h-[90vh] overflow-y-auto",
-        className,
-      )}
-      {...props}
-    >
-      {children}
-      <DialogPrimitive.Close className="absolute right-4 top-4 grid size-9 place-items-center rounded-full text-stone transition-colors hover:bg-sand hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest">
-        <X className="size-5" aria-hidden="true" />
-        <span className="sr-only">Close</span>
-      </DialogPrimitive.Close>
-    </DialogPrimitive.Content>
+    {/* Center via flexbox (no positioning transform), so the open animation can
+        scale-fade from the middle instead of snapping from a translated corner. */}
+    <div className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4">
+      <DialogPrimitive.Content
+        ref={ref}
+        className={cn(
+          "pointer-events-auto relative grid max-h-[90vh] w-full max-w-lg gap-4 overflow-y-auto rounded-3xl border border-line bg-card p-6 shadow-lift data-[state=open]:animate-[dialog-in_0.24s_cubic-bezier(0.22,1,0.36,1)] sm:p-8",
+          className,
+        )}
+        {...props}
+      >
+        {children}
+        <DialogPrimitive.Close className="absolute right-4 top-4 grid size-9 place-items-center rounded-full text-stone transition-colors hover:bg-sand hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest">
+          <X className="size-5" aria-hidden="true" />
+          <span className="sr-only">Close</span>
+        </DialogPrimitive.Close>
+      </DialogPrimitive.Content>
+    </div>
   </DialogPortal>
 ));
 DialogContent.displayName = "DialogContent";

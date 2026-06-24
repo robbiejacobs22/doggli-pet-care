@@ -48,8 +48,11 @@ export async function generateMetadata({
   if (!match) return {};
   const { service, city } = match;
 
-  const title = `${service.noun} in ${city.name}, CA`;
-  const description = `Trusted ${service.label.toLowerCase()} for ${city.name} dogs. ${service.blurb} 4.9★ rated, 500+ happy dogs. Call ${site.phone}.`;
+  const where = city.home ? "in" : "near";
+  const title = `${service.noun} ${where} ${city.name}, CA`;
+  const description = city.home
+    ? `${service.blurb} Right here in El Sobrante. 4.9★ rated, 500+ happy dogs. Call ${site.phone}.`
+    : `${service.blurb} Based in El Sobrante, ${city.distance} from ${city.name}. 4.9★ rated, 500+ happy dogs. Call ${site.phone}.`;
   const path = `/${service.slug}/${city.slug}`;
 
   return {
@@ -80,6 +83,16 @@ export default async function LocalServicePage({
   const otherServices = localServices.filter((s) => s.slug !== service.slug);
   const nearbyCities = serviceCities.filter((c) => c.slug !== city.slug).slice(0, 6);
   const review = testimonials[0];
+
+  // El Sobrante is the actual location; every other city is a nearby area we
+  // serve. Copy is built as explicit strings so JSX whitespace can't drop a space.
+  const where = city.home ? "in" : "near";
+  const pillText = city.home
+    ? `Right here in ${city.name} & the East Bay`
+    : `Serving ${city.name} from our El Sobrante home`;
+  const introText = city.home
+    ? `${service.blurb} Right here in El Sobrante, your pup gets warm, supervised, genuinely loving care from a friendly neighborhood face.`
+    : `${service.blurb} Our home is in El Sobrante — ${city.distance} from ${city.name} — so your ${city.name} pup gets warm, supervised, genuinely loving care that's an easy trip from home.`;
 
   const breadcrumb = breadcrumbSchema([
     { name: "Home", url: site.url },
@@ -119,18 +132,16 @@ export default async function LocalServicePage({
 
             <span className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-3 py-1.5 text-sm text-stone shadow-soft">
               <MapPin className="size-4 text-clay" aria-hidden="true" />
-              Serving {city.name} &amp; the East Bay
+              {pillText}
             </span>
 
             <h1 className="mt-5 text-balance text-4xl font-semibold leading-[1.05] text-forest-ink sm:text-5xl lg:text-6xl">
-              {service.noun} in{" "}
+              {service.noun} {where}{" "}
               <em className="not-italic text-clay">{city.name}</em>
             </h1>
 
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-stone">
-              {service.blurb} Whether you&apos;re {city.proximity} {city.name} or just
-              passing through, Doggli gives your dog warm, supervised, genuinely loving
-              care — with daily photo updates so you never wonder how they&apos;re doing.
+              {introText}
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -217,7 +228,7 @@ export default async function LocalServicePage({
               ))}
             </ul>
             <Button asChild variant="primary" size="lg" className="mt-8">
-              <Link href="/#book">Plan {city.name} care</Link>
+              <Link href="/#book">Plan your dog&apos;s stay</Link>
             </Button>
           </Reveal>
 
@@ -245,7 +256,7 @@ export default async function LocalServicePage({
       <Section className="bg-cream">
         <div className="grid gap-10 md:grid-cols-2">
           <div>
-            <h2 className="text-2xl font-semibold">More ways we help in {city.name}</h2>
+            <h2 className="text-2xl font-semibold">More ways we help {city.name} dogs</h2>
             <ul className="mt-5 flex flex-col gap-2">
               {otherServices.map((s) => (
                 <li key={s.slug}>
@@ -254,7 +265,7 @@ export default async function LocalServicePage({
                     className="group flex items-center justify-between rounded-2xl border border-line bg-card px-5 py-4 shadow-soft transition-all hover:-translate-y-0.5 hover:border-forest"
                   >
                     <span className="font-medium text-forest-ink">
-                      {s.noun} in {city.name}
+                      {s.noun} {where} {city.name}
                     </span>
                     <ArrowRight className="size-4 text-forest transition-transform group-hover:translate-x-0.5" />
                   </Link>
@@ -287,7 +298,7 @@ export default async function LocalServicePage({
           <Reveal className="mx-auto max-w-2xl">
             <Star className="mx-auto size-8 fill-honey text-honey" strokeWidth={1.25} aria-hidden="true" />
             <h2 className="mt-4 text-3xl font-semibold text-on-forest sm:text-4xl">
-              Ready for {service.noun.toLowerCase()} in {city.name}?
+              Ready for {service.noun.toLowerCase()} {where} {city.name}?
             </h2>
             <p className="mt-3 text-on-forest-muted">
               Start with a free meet &amp; greet. We&apos;ll make sure it&apos;s the right fit

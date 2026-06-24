@@ -339,23 +339,25 @@ export const faqs: Faq[] = [
 export type ServiceCity = {
   slug: string;
   name: string;
-  /** short, true descriptor used in localized copy */
-  blurb: string;
-  /** roughly how the area relates to the facility, for natural local copy */
-  proximity: string;
+  /** natural phrase for the trip from our El Sobrante home, e.g. "an easy drive" */
+  distance: string;
+  /** true only for El Sobrante, where the boarding home actually is */
+  home?: boolean;
 };
 
+// El Sobrante is home base. Every other city is a nearby area we serve — the
+// copy makes clear the facility is in El Sobrante, an easy trip from each.
 export const serviceCities: ServiceCity[] = [
-  { slug: "el-sobrante", name: "El Sobrante", blurb: "our home turf", proximity: "right here in" },
-  { slug: "richmond", name: "Richmond", blurb: "minutes away", proximity: "just south of us in" },
-  { slug: "el-cerrito", name: "El Cerrito", blurb: "a short drive", proximity: "a quick hop from us in" },
-  { slug: "pinole", name: "Pinole", blurb: "a short drive", proximity: "just up the road in" },
-  { slug: "hercules", name: "Hercules", blurb: "a short drive", proximity: "nearby in" },
-  { slug: "berkeley", name: "Berkeley", blurb: "an easy trip", proximity: "an easy drive from us in" },
-  { slug: "albany", name: "Albany", blurb: "an easy trip", proximity: "a short drive from us in" },
-  { slug: "oakland", name: "Oakland", blurb: "across the East Bay", proximity: "across the East Bay in" },
-  { slug: "berkeley-hills", name: "Kensington", blurb: "nearby", proximity: "in the hills near us in" },
-  { slug: "san-francisco", name: "San Francisco", blurb: "across the bay", proximity: "across the bay in" },
+  { slug: "el-sobrante", name: "El Sobrante", distance: "right here", home: true },
+  { slug: "richmond", name: "Richmond", distance: "just minutes away" },
+  { slug: "el-cerrito", name: "El Cerrito", distance: "a short drive" },
+  { slug: "pinole", name: "Pinole", distance: "a short drive" },
+  { slug: "hercules", name: "Hercules", distance: "a short drive" },
+  { slug: "berkeley", name: "Berkeley", distance: "an easy drive" },
+  { slug: "albany", name: "Albany", distance: "an easy drive" },
+  { slug: "oakland", name: "Oakland", distance: "a quick trip across the East Bay" },
+  { slug: "berkeley-hills", name: "Kensington", distance: "just over the hill" },
+  { slug: "san-francisco", name: "San Francisco", distance: "across the bay" },
 ];
 
 /** Service definitions keyed for the programmatic local pages. */
