@@ -36,7 +36,7 @@ Copy `.env.example` → `.env.local` (git-ignored). On Vercel, add these under
 | Variable | Required? | Purpose |
 | --- | --- | --- |
 | `RESEND_API_KEY` | Recommended | Sends booking + contact emails. **If unset, forms fall back to opening the visitor's email client with everything prefilled — nothing is ever lost.** |
-| `BOOKING_FROM_EMAIL` | With Resend | The verified "from" address, e.g. `"Doggli Pet Care <bookings@dogglipetcare.com>"`. Until you verify a domain in Resend, the sandbox `onboarding@resend.dev` works. |
+| `BOOKING_FROM_EMAIL` | With Resend | The verified "from" address, e.g. `"Doggli Pet Care <bookings@doggli.com>"`. Until you verify a domain in Resend, the sandbox `onboarding@resend.dev` works. |
 | `BOOKING_TO_EMAIL` | Optional | Where notifications are delivered. Defaults to the business email in `src/lib/site.ts`. |
 
 To enable real emails: create a [Resend](https://resend.com) account, verify your

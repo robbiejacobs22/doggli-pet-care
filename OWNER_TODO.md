@@ -6,7 +6,7 @@ confirm. Each points to exactly where to make the change.
 ## Must confirm / replace
 
 - [ ] **Production domain** — set `url` in `src/lib/site.ts` (currently
-      `https://dogglipetcare.com`). Drives canonical URLs, sitemap, OG tags, and schema.
+      `https://doggli.com`). Drives canonical URLs, sitemap, OG tags, and schema.
 - [ ] **Email spelling** — confirm `dogili@gmail.com` vs `doggli@gmail.com` in
       `src/lib/site.ts` (`email`). Looks like it may be a typo.
 - [ ] **Review count** — `rating.count` in `src/lib/site.ts` is a placeholder (`37`).
@@ -20,7 +20,7 @@ confirm. Each points to exactly where to make the change.
       confirmation email: (1) create a free [Resend](https://resend.com) account
       and add `RESEND_API_KEY` in Vercel; (2) **verify your domain** in Resend
       (free — a few DNS records) and set `BOOKING_FROM_EMAIL` to an address on it,
-      e.g. `Doggli Pet Care <hello@dogglipetcare.com>`. Until the domain is
+      e.g. `Doggli Pet Care <hello@doggli.com>`. Until the domain is
       verified, Resend can't email customers, but Formspree still delivers
       everything. See `.env.example`.
 

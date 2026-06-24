@@ -3,5 +3,13 @@
   "framework": "nextjs",
   "buildCommand": "next build",
   "installCommand": "npm install",
-  "outputDirectory": ".next"
+  "outputDirectory": ".next",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.doggli.com" }],
+      "destination": "https://doggli.com/:path*",
+      "permanent": true
+    }
+  ]
 }

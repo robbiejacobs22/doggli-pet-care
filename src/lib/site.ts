@@ -11,7 +11,7 @@ export const site = {
   name: "Doggli Pet Care",
   shortName: "Doggli",
   // OWNER TODO: replace with the real production domain (no trailing slash).
-  url: "https://dogglipetcare.com",
+  url: "https://doggli.com",
   tagline: "Give Your Furry Friend the Best Day, Every Day!",
   bio: "At Doggli, every dog deserves a day filled with fun and plenty of tail wags.",
   description:

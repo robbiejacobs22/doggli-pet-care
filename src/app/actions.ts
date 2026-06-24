@@ -25,7 +25,7 @@ const FORMSPREE =
   process.env.FORMSPREE_ENDPOINT || "https://formspree.io/f/xbdapwvq";
 
 // OWNER TODO: verify a domain in Resend, then set BOOKING_FROM_EMAIL to e.g.
-// "Doggli Pet Care <hello@dogglipetcare.com>" so branded customer emails send.
+// "Doggli Pet Care <hello@doggli.com>" so branded customer emails send.
 const FROM =
   process.env.BOOKING_FROM_EMAIL || "Doggli Pet Care <onboarding@resend.dev>";
 
