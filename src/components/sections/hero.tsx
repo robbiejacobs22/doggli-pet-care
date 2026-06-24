@@ -26,11 +26,12 @@ export function Hero() {
   });
   const parallax = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 70]);
 
-  // One cohesive fade for the whole hero copy — no per-child stagger (which
-  // desynced the text from the photo) and no blur filter (which flickered).
-  const fadeUp = reduce
-    ? { initial: { opacity: 0 }, animate: { opacity: 1 } }
-    : { initial: { opacity: 0, y: 14 }, animate: { opacity: 1, y: 0 } };
+  // Opacity-ONLY entrance. Animating a transform (scale/translate) means framer
+  // tears the transform down when the tween ends (matrix → none), which demotes
+  // the element's GPU layer and re-rasterizes it — a one-frame "blink" measured
+  // at ~700ms on the photo. A pure opacity fade never touches transform, so the
+  // layer (incl. the continuous ken-burns) stays composited the whole time.
+  const fade = { initial: { opacity: 0 }, animate: { opacity: 1 } };
 
   return (
     <section
@@ -46,8 +47,8 @@ export function Hero() {
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 pb-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pb-24">
         {/* Copy */}
         <motion.div
-          initial={fadeUp.initial}
-          animate={fadeUp.animate}
+          initial={fade.initial}
+          animate={fade.animate}
           transition={{ duration: 0.6, ease }}
         >
           <div>
@@ -108,8 +109,8 @@ export function Hero() {
         {/* Photo */}
         <motion.div
           ref={imageWrap}
-          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.97, y: 16 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          initial={fade.initial}
+          animate={fade.animate}
           transition={{ duration: 0.7, ease, delay: 0.05 }}
           className="relative"
         >
@@ -129,10 +130,10 @@ export function Hero() {
 
           {/* floating: daily updates */}
           <motion.div
-            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease, delay: 0.6 }}
-            className="absolute -bottom-5 -left-3 flex items-center gap-3 rounded-2xl border border-line bg-card/95 p-3 pr-4 shadow-lift backdrop-blur-sm sm:-left-6"
+            initial={fade.initial}
+            animate={fade.animate}
+            transition={{ duration: 0.6, ease, delay: 0.5 }}
+            className="absolute -bottom-5 -left-3 flex items-center gap-3 rounded-2xl border border-line bg-card p-3 pr-4 shadow-lift sm:-left-6"
           >
             <span className="grid size-11 place-items-center rounded-xl bg-honey-soft text-honey-deep">
               <Camera className="size-5" strokeWidth={1.75} aria-hidden="true" />
@@ -145,10 +146,10 @@ export function Hero() {
 
           {/* floating: supervised */}
           <motion.div
-            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease, delay: 0.75 }}
-            className="absolute -right-2 top-6 flex items-center gap-2 rounded-full border border-line bg-card/95 px-3.5 py-2 shadow-lift backdrop-blur-sm sm:-right-4"
+            initial={fade.initial}
+            animate={fade.animate}
+            transition={{ duration: 0.6, ease, delay: 0.62 }}
+            className="absolute -right-2 top-6 flex items-center gap-2 rounded-full border border-line bg-card px-3.5 py-2 shadow-lift sm:-right-4"
           >
             <ShieldCheck className="size-5 text-forest" strokeWidth={1.75} aria-hidden="true" />
             <span className="text-sm font-medium text-forest-ink">Safe &amp; supervised</span>
