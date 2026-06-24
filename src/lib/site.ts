@@ -45,7 +45,8 @@ export const site = {
     nextdoor: "https://nextdoor.com/pages/doggli-pet-care-el-sobrante-ca/",
   },
 
-  rating: { value: 4.9, count: 37 }, // OWNER TODO: set the real review count.
+  // Real Google rating for Doggli Pet Care (5.0★, 28 reviews as of this build).
+  rating: { value: 5.0, count: 28 },
 } as const;
 
 export const sameAs = Object.values(site.socials);

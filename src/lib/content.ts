@@ -154,38 +154,91 @@ export const howItWorks: Step[] = [
 export type Testimonial = {
   id: number;
   name: string;
-  dogName: string;
+  /** relative time as shown on Google, e.g. "a month ago" */
+  when: string;
   rating: number;
   text: string;
-  /** OWNER TODO: replace placeholders with real Google review links/text. */
   source?: "Google";
 };
 
+/**
+ * Real Google reviews for Doggli Pet Care (verbatim excerpts, 5.0★).
+ * OWNER: to add a new one, copy the reviewer name, time, and text from your
+ * Google reviews and drop it in here.
+ */
 export const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Sarah M.",
-    dogName: "Max",
+    name: "Avia Haimovich",
+    when: "a month ago",
     rating: 5,
     source: "Google",
-    text: "Doggli has been a lifesaver! My golden retriever, Max, absolutely loves it there. He comes home tired and happy every single time. The care and attention is incredible.",
+    text: "Gila is truly the best dog sitter we've ever had! Every time we travel, we feel completely at ease knowing our dog is in such caring and reliable hands.",
   },
   {
     id: 2,
-    name: "James K.",
-    dogName: "Luna",
+    name: "Guy B",
+    when: "4 months ago",
     rating: 5,
     source: "Google",
-    text: "I was nervous about leaving my puppy for the first time, but the team at Doggli made it so easy. They sent me updates throughout the day and my little Luna had the best time!",
+    text: "Gila has been an absolute blessing to our family and our dogs. She's truly the dog whisperer — it shows in the way they respond to her.",
   },
   {
     id: 3,
-    name: "Emily R.",
-    dogName: "Buddy",
+    name: "Gabriel Gliksman",
+    when: "4 months ago",
     rating: 5,
     source: "Google",
-    text: "The boarding service is phenomenal. We went on vacation for two weeks and our dog was treated like royalty. Highly recommend Doggli to every pet parent out there!",
+    text: "The facility and yard are very spacious, in a beautiful and calm atmosphere. It's the only place I would trust to leave my dogs with. Thank you Doggli 😍",
   },
+  {
+    id: 4,
+    name: "Shobit Singh",
+    when: "4 weeks ago",
+    rating: 5,
+    source: "Google",
+    text: "Doggli Pet Care is awesome in so many ways. Caretaker Gila prioritizes the well being of the dogs and understands all of their needs.",
+  },
+  {
+    id: 5,
+    name: "Ben Nash",
+    when: "2 weeks ago",
+    rating: 5,
+    source: "Google",
+    text: "Highly recommend! She took great care of my dog and was genuinely caring and attentive. I felt completely at ease knowing my dog was in good hands.",
+  },
+  {
+    id: 6,
+    name: "Rosaura Salinas",
+    when: "a month ago",
+    rating: 5,
+    source: "Google",
+    text: "Gila and Assi have been so helpful with my 2 big dogs. It was their first time in daycare and they loved it — they play better at home after visiting Doggli.",
+  },
+  {
+    id: 7,
+    name: "Robert Lopez",
+    when: "2 months ago",
+    rating: 5,
+    source: "Google",
+    text: "They have a big backyard for the dogs to socialize and play. He made new friends, and when I picked him up he looked so happy, like he had a lot of fun.",
+  },
+];
+
+/** Real photos pulled from the Google reviews (self-hosted in /public/reviews). */
+export type ReviewPhoto = { src: string; alt: string };
+
+export const reviewPhotos: ReviewPhoto[] = [
+  { src: "/reviews/g-1.jpg", alt: "Two happy dogs nose-to-nose at Doggli Pet Care" },
+  { src: "/reviews/g-5.jpg", alt: "A dog playing with a tennis ball in Doggli's big backyard" },
+  { src: "/reviews/g-9.jpg", alt: "Three dogs together in the backyard at Doggli" },
+  { src: "/reviews/g-3.jpg", alt: "A happy dog in Doggli's spacious yard" },
+  { src: "/reviews/g-8.jpg", alt: "Gila playing with a group of dogs at Doggli" },
+  { src: "/reviews/g-7.jpg", alt: "Dogs playing together at Doggli daycare" },
+  { src: "/reviews/g-10.jpg", alt: "A dog enjoying the garden at Doggli Pet Care" },
+  { src: "/reviews/g-2.jpg", alt: "Doggli's big, green backyard for dogs to run and explore" },
+  { src: "/reviews/g-4.jpg", alt: "Dogs in the supervised play area at Doggli" },
+  { src: "/reviews/g-11.jpg", alt: "A dog roaming the large backyard at Doggli" },
 ];
 
 export type GalleryImage = {

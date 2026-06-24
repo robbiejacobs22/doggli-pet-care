@@ -244,7 +244,7 @@ export default async function LocalServicePage({
                 </span>
                 <span className="text-sm">
                   <span className="block font-semibold text-forest-ink">{review.name}</span>
-                  <span className="text-stone">Dog parent to {review.dogName}</span>
+                  <span className="text-stone">Verified review · via Google</span>
                 </span>
               </figcaption>
             </figure>
