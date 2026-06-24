@@ -76,7 +76,7 @@ export const services: Service[] = [
 ];
 
 export const stats = [
-  { value: 500, suffix: "+", label: "Happy Dogs" },
+  { value: 120, suffix: "+", label: "Happy Dogs" },
   { value: 5, suffix: "+", label: "Years Caring" },
   { value: 5.0, suffix: "★", label: "Average Rating", decimals: 1 },
 ] as const;

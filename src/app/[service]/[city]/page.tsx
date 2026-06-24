@@ -51,8 +51,8 @@ export async function generateMetadata({
   const where = city.home ? "in" : "near";
   const title = `${service.noun} ${where} ${city.name}, CA`;
   const description = city.home
-    ? `${service.blurb} Right here in El Sobrante. 4.9★ rated, 500+ happy dogs. Call ${site.phone}.`
-    : `${service.blurb} Based in El Sobrante, ${city.distance} from ${city.name}. 4.9★ rated, 500+ happy dogs. Call ${site.phone}.`;
+    ? `${service.blurb} Right here in El Sobrante. 5.0★ rated, 120+ happy dogs. Call ${site.phone}.`
+    : `${service.blurb} Based in El Sobrante, ${city.distance} from ${city.name}. 5.0★ rated, 120+ happy dogs. Call ${site.phone}.`;
   const path = `/${service.slug}/${city.slug}`;
 
   return {
@@ -161,7 +161,7 @@ export default async function LocalServicePage({
               <Stars rating={site.rating.value} size={18} />
               <span className="text-sm text-stone">
                 <span className="font-semibold text-forest-ink">{site.rating.value.toFixed(1)}/5</span>{" "}
-                · {site.rating.count}+ reviews · 500+ happy dogs
+                · {site.rating.count}+ reviews · 120+ happy dogs
               </span>
             </div>
           </Reveal>

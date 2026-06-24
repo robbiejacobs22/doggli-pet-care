@@ -80,7 +80,7 @@ export default function OgImage() {
             </svg>
             {site.rating.value.toFixed(1)} rating
           </div>
-          <div style={{ fontSize: 28, color: "#5b5040" }}>500+ happy dogs</div>
+          <div style={{ fontSize: 28, color: "#5b5040" }}>120+ happy dogs</div>
           <div style={{ fontSize: 28, color: "#5b5040" }}>{site.phone}</div>
         </div>
       </div>

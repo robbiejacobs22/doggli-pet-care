@@ -15,7 +15,7 @@ export const site = {
   tagline: "Give Your Furry Friend the Best Day, Every Day!",
   bio: "At Doggli, every dog deserves a day filled with fun and plenty of tail wags.",
   description:
-    "Boutique dog boarding, daycare, walking, and drop-in visits in El Sobrante, CA. Trusted, loving, supervised care for East Bay pups — flexible hours, 4.9★ rated, 500+ happy dogs.",
+    "Boutique dog boarding, daycare, walking, and drop-in visits in El Sobrante, CA. Trusted, loving, supervised care for East Bay pups — flexible hours, 5.0★ rated, 120+ happy dogs.",
 
   // Contact
   phone: "(510) 393-2881",
