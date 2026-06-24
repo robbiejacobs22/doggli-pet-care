@@ -149,7 +149,7 @@ export function Hero() {
             initial={fade.initial}
             animate={fade.animate}
             transition={{ duration: 0.6, ease, delay: 0.62 }}
-            className="absolute -right-2 top-6 flex items-center gap-2 rounded-full border border-line bg-card px-3.5 py-2 shadow-lift sm:-right-4"
+            className="absolute -right-2 top-0 flex -translate-y-1/2 items-center gap-2 rounded-full border border-line bg-card px-3.5 py-2 shadow-lift sm:-right-4"
           >
             <ShieldCheck className="size-5 text-forest" strokeWidth={1.75} aria-hidden="true" />
             <span className="text-sm font-medium text-forest-ink">Safe &amp; supervised</span>
