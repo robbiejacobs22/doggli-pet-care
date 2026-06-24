@@ -47,6 +47,10 @@ export const site = {
 
   // Real Google rating for Doggli Pet Care (5.0★, 28 reviews as of this build).
   rating: { value: 5.0, count: 28 },
+
+  // Direct link to the Google reviews panel (CID identifies the business).
+  googleReviewsUrl:
+    "https://www.google.com/search?q=doggli+pet+care#lrd=0x80857745ee8a06ff:0xbc0a72b60b997521,1,,,,",
 } as const;
 
 export const sameAs = Object.values(site.socials);

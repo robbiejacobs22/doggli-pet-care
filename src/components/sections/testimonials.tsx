@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Section } from "@/components/section";
 import { Reveal } from "@/components/motion/reveal";
 import { Stars } from "@/components/stars";
@@ -25,18 +25,34 @@ function GoogleG({ className }: { className?: string }) {
 export function Testimonials() {
   const reduce = useReducedMotion();
   const [index, setIndex] = useState(0);
+  const [dir, setDir] = useState(1);
   const [paused, setPaused] = useState(false);
   const count = testimonials.length;
   const active = testimonials[index];
 
-  // Auto-advance the spotlight (paused on hover / focus, off for reduced motion).
-  useEffect(() => {
-    if (reduce || paused) return;
-    const id = setInterval(() => setIndex((i) => (i + 1) % count), 6000);
-    return () => clearInterval(id);
-  }, [reduce, paused, count]);
+  const paginate = (next: number, d: number) => {
+    setDir(d);
+    setIndex(((next % count) + count) % count);
+  };
 
-  const go = (dir: number) => setIndex((i) => (i + dir + count) % count);
+  // Auto-advance every ~7s (enough to read a review), paused on hover/focus.
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => {
+      setDir(1);
+      setIndex((i) => (i + 1) % count);
+    }, 7000);
+    return () => clearInterval(id);
+  }, [paused, count]);
+
+  // The new review slides in from the side as the old one slides out — a clean
+  // carousel move with no empty gap or text overlap. Reduced motion = plain fade.
+  const offset = reduce ? 0 : 48;
+  const variants = {
+    enter: (d: number) => ({ x: d > 0 ? offset : -offset, opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit: (d: number) => ({ x: d > 0 ? -offset : offset, opacity: 0 }),
+  };
 
   return (
     <Section
@@ -55,7 +71,13 @@ export function Testimonials() {
           <h2 className="mt-3 text-balance text-4xl font-semibold leading-tight text-on-forest sm:text-5xl">
             Loved by local pet parents
           </h2>
-          <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-on-forest/15 bg-on-forest/5 px-4 py-2">
+          <a
+            href={site.googleReviewsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Read all ${site.rating.count} reviews on Google`}
+            className="mt-6 inline-flex items-center gap-3 rounded-full border border-on-forest/15 bg-on-forest/5 px-4 py-2 no-underline transition-all duration-300 hover:-translate-y-0.5 hover:border-honey/40 hover:bg-on-forest/10"
+          >
             <span className="font-display text-3xl font-semibold text-honey">
               {site.rating.value.toFixed(1)}
             </span>
@@ -66,7 +88,7 @@ export function Testimonials() {
                 {site.rating.count} reviews on Google
               </span>
             </span>
-          </div>
+          </a>
         </Reveal>
 
         {/* Spotlight */}
@@ -77,25 +99,23 @@ export function Testimonials() {
           onFocusCapture={() => setPaused(true)}
           onBlurCapture={() => setPaused(false)}
         >
-          <div className="relative min-h-[24rem] overflow-hidden rounded-3xl bg-card shadow-lift sm:min-h-[20rem]">
-            <Quote
-              className="absolute left-7 top-7 size-9 text-honey/40 sm:left-9 sm:top-8"
-              aria-hidden="true"
-            />
-            <AnimatePresence initial={false} mode="wait">
+          <div className="relative min-h-[22rem] overflow-hidden rounded-3xl bg-card shadow-lift sm:min-h-[19rem]">
+            <AnimatePresence initial={false} custom={dir} mode={reduce ? "wait" : "sync"}>
               <motion.figure
                 key={active.id}
-                initial={reduce ? { opacity: 0 } : { opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduce ? { opacity: 0 } : { opacity: 0, y: -12 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 flex flex-col justify-center p-7 pt-16 text-ink sm:p-10 sm:pt-16"
+                custom={dir}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0 flex flex-col justify-center gap-6 p-8 text-ink sm:p-10"
               >
-                <Stars rating={active.rating} size={18} />
-                <blockquote className="mt-4 font-display text-lg leading-relaxed text-forest-ink sm:text-2xl sm:leading-relaxed">
+                <Stars rating={active.rating} size={20} />
+                <blockquote className="font-display text-xl font-medium leading-relaxed text-forest-ink sm:text-2xl sm:leading-relaxed">
                   &ldquo;{active.text}&rdquo;
                 </blockquote>
-                <figcaption className="mt-6 flex items-center gap-3">
+                <figcaption className="flex items-center gap-3">
                   <span className="grid size-11 place-items-center rounded-full bg-forest font-display text-base font-semibold text-on-forest">
                     {active.name.charAt(0)}
                   </span>
@@ -116,7 +136,7 @@ export function Testimonials() {
           <div className="mt-6 flex items-center justify-center gap-5">
             <button
               type="button"
-              onClick={() => go(-1)}
+              onClick={() => paginate(index - 1, -1)}
               aria-label="Previous review"
               className="grid size-10 place-items-center rounded-full border border-on-forest/20 text-on-forest transition-colors hover:border-honey/50 hover:bg-honey/10 hover:text-honey"
             >
@@ -131,7 +151,7 @@ export function Testimonials() {
                   role="tab"
                   aria-selected={i === index}
                   aria-label={`Review ${i + 1} of ${count}`}
-                  onClick={() => setIndex(i)}
+                  onClick={() => paginate(i, i > index ? 1 : -1)}
                   className={cn(
                     "h-2 rounded-full transition-all duration-300",
                     i === index ? "w-6 bg-honey" : "w-2 bg-on-forest/30 hover:bg-on-forest/60",
@@ -142,7 +162,7 @@ export function Testimonials() {
 
             <button
               type="button"
-              onClick={() => go(1)}
+              onClick={() => paginate(index + 1, 1)}
               aria-label="Next review"
               className="grid size-10 place-items-center rounded-full border border-on-forest/20 text-on-forest transition-colors hover:border-honey/50 hover:bg-honey/10 hover:text-honey"
             >

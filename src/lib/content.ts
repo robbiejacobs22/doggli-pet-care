@@ -78,7 +78,7 @@ export const services: Service[] = [
 export const stats = [
   { value: 500, suffix: "+", label: "Happy Dogs" },
   { value: 5, suffix: "+", label: "Years Caring" },
-  { value: 4.9, suffix: "★", label: "Average Rating", decimals: 1 },
+  { value: 5.0, suffix: "★", label: "Average Rating", decimals: 1 },
 ] as const;
 
 export type TrustItem = { icon: IconName; title: string; description: string };

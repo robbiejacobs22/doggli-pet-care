@@ -4,9 +4,23 @@ import { Clock, Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { navLinks, services } from "@/lib/content";
 import { site, telHref, mailtoHref, directionsHref } from "@/lib/site";
 
+/** Nextdoor's house mark, drawn to sit at the same weight as the lucide icons. */
+function NextdoorIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 3a1.6 1.6 0 0 1 1 .36l7.4 5.9c.38.3.6.76.6 1.25V19.5a1.5 1.5 0 0 1-1.5 1.5H14.1v-5.6a2.1 2.1 0 0 0-4.2 0V21H4.5A1.5 1.5 0 0 1 3 19.5v-8.99c0-.49.22-.95.6-1.25l7.4-5.9A1.6 1.6 0 0 1 12 3Z"
+      />
+    </svg>
+  );
+}
+
 const socialLinks = [
   { icon: Instagram, href: site.socials.instagram, label: "Instagram" },
   { icon: Facebook, href: site.socials.facebook, label: "Facebook" },
+  { icon: NextdoorIcon, href: site.socials.nextdoor, label: "Nextdoor" },
 ];
 
 export function Footer() {

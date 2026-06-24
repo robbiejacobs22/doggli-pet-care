@@ -52,12 +52,18 @@ export function Hero() {
           transition={{ duration: 0.6, ease }}
         >
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-3 py-1.5 text-sm font-medium text-stone shadow-soft">
+            <a
+              href={site.googleReviewsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Rated ${site.rating.value.toFixed(1)} stars — read our reviews on Google`}
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-3 py-1.5 text-sm font-medium text-stone no-underline shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-lift"
+            >
               <Stars rating={site.rating.value} size={15} />
               <span className="text-forest-ink">{site.rating.value.toFixed(1)}</span>
               <span aria-hidden className="text-line-strong">·</span>
               <span>Loved by {stats[0].value}+ local dogs</span>
-            </span>
+            </a>
           </div>
 
           <h1 className="mt-6 text-balance text-5xl font-semibold leading-[1.02] text-forest-ink sm:text-6xl lg:text-7xl">
@@ -89,20 +95,40 @@ export function Hero() {
 
           {/* trust stats */}
           <dl className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-line pt-8">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <dt className="sr-only">{s.label}</dt>
-                <dd>
-                  <span className="block font-display text-3xl font-semibold text-forest">
-                    {"decimals" in s && s.decimals
-                      ? s.value.toFixed(s.decimals)
-                      : s.value}
+            {stats.map((s) => {
+              const isRating = s.suffix === "★";
+              const value =
+                "decimals" in s && s.decimals ? s.value.toFixed(s.decimals) : s.value;
+              const body = (
+                <>
+                  <span className="block font-display text-3xl font-semibold text-forest transition-colors group-hover:text-forest-bright">
+                    {value}
                     {s.suffix}
                   </span>
                   <span className="mt-1 block text-sm text-stone">{s.label}</span>
-                </dd>
-              </div>
-            ))}
+                </>
+              );
+              return (
+                <div key={s.label}>
+                  <dt className="sr-only">{s.label}</dt>
+                  <dd>
+                    {isRating ? (
+                      <a
+                        href={site.googleReviewsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Read our 5-star reviews on Google"
+                        className="group block no-underline"
+                      >
+                        {body}
+                      </a>
+                    ) : (
+                      body
+                    )}
+                  </dd>
+                </div>
+              );
+            })}
           </dl>
         </motion.div>
 
