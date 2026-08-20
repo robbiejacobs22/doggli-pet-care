@@ -55,7 +55,7 @@ export function GET() {
     "",
     "## Key pages",
     `- [Home](${site.url}): overview of Doggli Pet Care`,
-    `- [Pricing](${site.url}/#pricing): daycare, overnight, and weekly rates`,
+    `- [Pricing](${site.url}/#pricing): daycare, overnight, and multi-day rates`,
     `- [Reviews](${site.url}/#testimonials): real 5-star Google reviews`,
     `- [Book a stay or contact us](${site.url}/#book): start with a free meet & greet`,
     "",

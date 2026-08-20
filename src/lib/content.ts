@@ -77,7 +77,7 @@ export const services: Service[] = [
 
 export const stats = [
   { value: 120, suffix: "+", label: "Happy Dogs" },
-  { value: 5, suffix: "+", label: "Years Caring" },
+  { value: 15, suffix: "+", label: "Years Caring" },
   { value: 5.0, suffix: "★", label: "Average Rating", decimals: 1 },
 ] as const;
 
@@ -294,9 +294,10 @@ export const pricingTiers: PricingTier[] = [
   {
     id: "daycare",
     name: "Day Care",
-    price: 70,
+    price: 75,
     period: "day",
     description: "Perfect for busy workdays.",
+    note: "$50 for 5 hours or less",
     features: [
       "Full-day supervised daycare",
       "Outdoor play sessions",
@@ -323,12 +324,12 @@ export const pricingTiers: PricingTier[] = [
   },
   {
     id: "weekly",
-    name: "7-Day Special",
-    price: 600,
-    period: "week",
+    name: "10-Day Special",
+    price: 900,
+    period: "10 days",
     description: "Best value for longer stays.",
     features: [
-      "Full week of boarding",
+      "10 full days of boarding",
       "Daily walks & playtime",
       "Outdoor play sessions",
       "Cozy sleeping area",
@@ -349,22 +350,22 @@ export const faqs: Faq[] = [
   {
     question: "How much does dog boarding and daycare cost?",
     answer:
-      "Daycare is $70 per day, overnight boarding is $100 per night, and our 7-Day Special is $600 per week (a $100 saving versus the nightly rate). Every stay includes outdoor play, feeding, and daily photo updates.",
+      "Daycare is $50 for 5 hours or less and $75 for a full day (over 5 hours). Overnight boarding is $100 per night, and our 10-Day Special is $900 (a $100 saving versus the nightly rate). Every stay includes outdoor play, feeding, and daily photo updates.",
   },
   {
     question: "Where is Doggli Pet Care located?",
     answer:
-      "We're at 4317 Santa Rita Rd, El Sobrante, CA 94803 — a home-based dog care in the East Bay, an easy drive from Richmond, El Cerrito, Pinole, Hercules, Berkeley, and Oakland.",
+      "We're at 4317 Santa Rita Rd, El Sobrante, CA 94803 — a home-based dog care in the East Bay, an easy drive from Richmond, El Cerrito, Pinole, Hercules, Berkeley, and Oakland. Visits are by appointment only.",
   },
   {
     question: "Who runs Doggli Pet Care?",
     answer:
-      "Doggli is owned and run by Gila, a hands-on caretaker with 5+ years of experience and a 5.0★ rating across 28 Google reviews. Your dog is cared for personally — not handed off to a rotating staff.",
+      "Doggli is owned and run by Gila, a hands-on caretaker with 15+ years of experience and a 5.0★ rating across 36 Google reviews. Your dog is cared for personally — not handed off to a rotating staff.",
   },
   {
     question: "What vaccinations does my dog need?",
     answer:
-      "Dogs should be up to date on core vaccines — Rabies, DHPP (distemper/parvo), and Bordetella (kennel cough). Please bring a copy of records to the meet & greet. (Owner to confirm exact requirements.)",
+      "Dogs should be up to date on core vaccines — Rabies, DHPP (distemper/parvo), and Bordetella (kennel cough). Please bring a copy of records to the meet & greet, or email them to us. (Owner to confirm exact requirements.)",
   },
   {
     question: "Do you offer a meet & greet before boarding?",
@@ -374,7 +375,7 @@ export const faqs: Faq[] = [
   {
     question: "What should I bring for my dog's stay?",
     answer:
-      "Your dog's food (we keep their diet consistent), any medications with instructions, and a favorite toy or blanket for comfort. We provide bedding, bowls, and lots of love. (Owner to confirm specifics.)",
+      "Your dog's food (we keep their diet consistent) and any medications with instructions. We provide bedding and lots of love. (Owner to confirm specifics.)",
   },
   {
     question: "What are your hours for drop-off and pick-up?",

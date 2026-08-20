@@ -45,8 +45,8 @@ export const site = {
     nextdoor: "https://nextdoor.com/pages/doggli-pet-care-el-sobrante-ca/",
   },
 
-  // Real Google rating for Doggli Pet Care (5.0★, 28 reviews as of this build).
-  rating: { value: 5.0, count: 28 },
+  // Real Google rating for Doggli Pet Care (5.0★, 36 reviews as of this build).
+  rating: { value: 5.0, count: 36 },
 
   // Direct link to the Google reviews panel (CID identifies the business).
   googleReviewsUrl:

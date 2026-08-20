@@ -28,7 +28,7 @@ export function About() {
             <div className="absolute -bottom-5 -right-3 flex items-center gap-3 rounded-2xl bg-forest px-5 py-4 text-on-forest shadow-lift sm:-right-5">
               <Heart className="size-7 fill-honey text-honey" strokeWidth={1.5} aria-hidden="true" />
               <span>
-                <span className="block font-display text-2xl font-semibold leading-none">5+ years</span>
+                <span className="block font-display text-2xl font-semibold leading-none">15+ years</span>
                 <span className="text-sm text-on-forest-muted">of tail wags</span>
               </span>
             </div>
